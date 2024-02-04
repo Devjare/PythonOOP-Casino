@@ -126,7 +126,34 @@ class BinBuilder:
             self.wheel.add_outcome(n, outcome)
             self.wheel.add_outcome(n + 1, outcome)
 
-            n = 3 * r + 2  # Column one
+            n = 3 * r + 2  # Column two
             outcome = Outcome(f"Split {n}-{n+1}", Game.SPLIT_BET)
             self.wheel.add_outcome(n, outcome)
             self.wheel.add_outcome(n + 1, outcome)
+        
+        for n in range(1, 33):
+            outcome = Outcome(f"Split {n}-{n+3}", Game.SPLIT_BET)
+            self.wheel.add_outcome(n, outcome)
+            self.wheel.add_outcome(n+3, outcome)
+
+
+    def build_street_bets(self):
+        pass
+    
+    def build_corner_bets(self):
+        pass
+    
+    def build_line_bets(self):
+        pass
+    
+    def build_dozen_bets(self):
+        pass
+    
+    def build_column_bets(self):
+        pass
+    
+    def build_outside_bets(self):
+        """
+        Even-Money or 'Outside' bets.
+        """
+        pass
