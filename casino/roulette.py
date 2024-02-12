@@ -158,8 +158,15 @@ class BinBuilder:
             self.wheel.add_outcome(n + 2, outcome)
     
     def build_corner_bets(self):
-        for r in range(12):
+        for r in range(11):
             n = 3 * r + 1
+            outcome = Outcome(f"Corner {n}-{n+1}-{n+3}-{n+4}", Game.CORNER_BET)
+            self.wheel.add_outcome(n,outcome)
+            self.wheel.add_outcome(n+1,outcome)
+            self.wheel.add_outcome(n+3,outcome)
+            self.wheel.add_outcome(n+4,outcome)
+            
+            n = 3 * r + 2
             outcome = Outcome(f"Corner {n}-{n+1}-{n+3}-{n+4}", Game.CORNER_BET)
             self.wheel.add_outcome(n,outcome)
             self.wheel.add_outcome(n+1,outcome)

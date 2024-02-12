@@ -44,7 +44,6 @@ def test_bin_builder():
     wheel = Wheel()
     builder = BinBuilder(wheel)
     
-    # Test straight bets.
     builder.build_straight_bets()
     assert Outcome(f"Bin no. 0", Game.STRAIGHT_BET) in wheel.bins[0].outcomes
     assert Outcome(f"Bin no. 00", Game.STRAIGHT_BET) in wheel.bins[37].outcomes
@@ -57,10 +56,22 @@ def test_bin_builder():
     assert Outcome("Split 33-36", Game.SPLIT_BET) in wheel.bins[36].outcomes
     assert Outcome("Split 35-36", Game.SPLIT_BET) in wheel.bins[36].outcomes
     
-    # builder.build_split_bets()
-    # builder.build_street_bets()
+    builder.build_street_bets()
+    assert Outcome("Street 1-2-3", Game.STREET_BET) in wheel.bins[1].outcomes
+    assert Outcome("Street 34-35-36", Game.STREET_BET) in wheel.bins[36].outcomes
+
+    builder.build_corner_bets()
+    assert Outcome("Corner 1-2-4-5", Game.CORNER_BET) in wheel.bins[1].outcomes
+
+    assert Outcome("Corner 1-2-4-5", Game.CORNER_BET) in wheel.bins[4].outcomes
+    assert Outcome("Corner 4-5-7-8", Game.CORNER_BET) in wheel.bins[4].outcomes
+
+    assert Outcome("Corner 1-2-4-5", Game.CORNER_BET) in wheel.bins[5].outcomes
+    assert Outcome("Corner 4-5-7-8", Game.CORNER_BET) in wheel.bins[5].outcomes
+    assert Outcome("Corner 2-3-5-6", Game.CORNER_BET) in wheel.bins[5].outcomes
+    assert Outcome("Corner 5-6-8-9", Game.CORNER_BET) in wheel.bins[5].outcomes
+
     # builder.build_line_bets()
-    # builder.build_corner_bets()
     # builder.build_dozen_bets()
     # builder.build_column_bets()
     # builder.build_outside_bets()
