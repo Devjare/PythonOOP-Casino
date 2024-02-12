@@ -203,7 +203,7 @@ class BinBuilder:
         """
         red = Outcome("Red", Game.OUTSIDE_BET)
         black = Outcome("Black", Game.OUTSIDE_BET)
-        even = Outcome("Event", Game.OUTSIDE_BET)
+        even = Outcome("Even", Game.OUTSIDE_BET)
         odd = Outcome("Odd", Game.OUTSIDE_BET)
         low = Outcome("Low", Game.OUTSIDE_BET)
         high = Outcome("High", Game.OUTSIDE_BET)
