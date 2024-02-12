@@ -1,4 +1,4 @@
-from casino.roulette import Outcome, Wheel, Bin
+from casino.roulette import Outcome, Wheel, Bin, BinBuilder, Game
 
 
 def test_outcome():
@@ -39,3 +39,31 @@ def test_wheel_sequence():
     wheel.add_outcome(8, Outcome("test", 1))
     wheel.rng.seed(1)
     assert Outcome("test", 1) in wheel.choose()
+
+def test_bin_builder(): 
+    wheel = Wheel()
+    builder = BinBuilder(wheel)
+    
+    # Test straight bets.
+    builder.build_straight_bets()
+    assert Outcome(f"Bin no. 0", Game.STRAIGHT_BET) in wheel.bins[0].outcomes
+    assert Outcome(f"Bin no. 00", Game.STRAIGHT_BET) in wheel.bins[37].outcomes
+    assert Outcome(f"Bin no. 1", Game.STRAIGHT_BET) in wheel.bins[1].outcomes
+    assert Outcome(f"Bin no. 36", Game.STRAIGHT_BET) in wheel.bins[36].outcomes
+    
+    builder.build_split_bets()
+    assert Outcome("Split 1-2", Game.SPLIT_BET) in wheel.bins[1].outcomes
+    assert Outcome("Split 1-4", Game.SPLIT_BET) in wheel.bins[1].outcomes
+    assert Outcome("Split 33-36", Game.SPLIT_BET) in wheel.bins[36].outcomes
+    assert Outcome("Split 35-36", Game.SPLIT_BET) in wheel.bins[36].outcomes
+    
+    # builder.build_split_bets()
+    # builder.build_street_bets()
+    # builder.build_line_bets()
+    # builder.build_corner_bets()
+    # builder.build_dozen_bets()
+    # builder.build_column_bets()
+    # builder.build_outside_bets()
+    # builder.build_five_bet()
+
+
